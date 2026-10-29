@@ -1,0 +1,62 @@
+/* State lives in data attributes too: X (React) rewrites class names on re-render. */
+.lff-pending,
+[data-lff-state="pending"] {
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+.lff-removed,
+[data-lff-state="hidden"][data-lff-style="remove"] {
+  display: none !important;
+}
+.lff-collapsed > :not(.lff-bar),
+[data-lff-state="hidden"][data-lff-style="collapse"] > :not(.lff-bar) {
+  display: none !important;
+}
+[data-lff-panel="hidden"] {
+  display: none !important;
+}
+/* X lays a post out as a row; wrap so the bar sits on top, full width. */
+[data-lff-state] {
+  flex-wrap: wrap !important;
+}
+.lff-bar {
+  box-sizing: border-box;
+  width: 100%;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  font: 13px/1.4 -apple-system, system-ui, sans-serif;
+  color: #56687a;
+  background: #f3f2ef;
+  border-radius: 8px;
+}
+.lff-ok {
+  padding: 4px 14px;
+  font-size: 12px;
+  color: #1f7a45;
+  background: #e8f5ee;
+  border-radius: 8px 8px 0 0;
+}
+.lff-bar button {
+  border: 1px solid #0a66c2;
+  color: #0a66c2;
+  background: transparent;
+  border-radius: 16px;
+  padding: 2px 12px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+  .lff-bar {
+    color: #b0b7be;
+    background: #1d2226;
+  }
+  .lff-bar button {
+    color: #71b7fb;
+    border-color: #71b7fb;
+  }
+}

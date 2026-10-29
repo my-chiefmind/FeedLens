@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: light dark; --bg:#fff; --ink:#1d2226; --muted:#5e6b78; --accent:#0a66c2; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1b2025; --ink:#e8ecef; --muted:#9aa6b2; --accent:#71b7fb; } }
+  body { margin:0; width:260px; padding:14px; background:var(--bg); color:var(--ink); font:14px/1.5 system-ui, sans-serif; }
+  h1 { font-size:15px; margin:0 0 10px; } h2 { font-size:13px; margin:10px 0 0; color:var(--muted); }
+  .stat { display:flex; justify-content:space-between; } .err { color:#c0392b; margin-top:6px; }
+  label { display:flex; gap:8px; align-items:flex-start; margin:10px 0; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+  <h1>Feed Lens</h1>
+  <p style="color:var(--muted);font-size:13px">by <a href="https://MyChiefMind.com" target="_blank" rel="noopener noreferrer">My Chief Mind</a></p>
+  <h2>LinkedIn</h2>
+  <label><input type="checkbox" id="enabled"> Filter is on</label>
+  <label><input type="checkbox" id="hideAds"> Hide ads: "Promoted" posts and posts that look like ads or sales pitches</label>
+  <h2>X</h2>
+  <label><input type="checkbox" id="x_enabled"> Filter is on</label>
+  <label><input type="checkbox" id="x_hideAds"> Hide ads: "Ad" posts and posts that look like ads or sales pitches</label>
+  <div class="stat"><span>Shown</span><b id="shown">0</b></div>
+  <div class="stat"><span>Hidden</span><b id="hidden">0</b></div>
+  <div class="stat"><span>Decided by AI</span><b id="ai">0</b></div>
+  <div class="stat"><span>Decided by rules (no AI)</span><b id="rules">0</b></div>
+  <p id="mode" style="color:var(--muted);font-size:12px;margin:6px 0 0"></p>
+  <div class="err" id="error"></div>
+  <p><a href="#" id="settings">Settings</a></p>
+<script src="popup.js"></script>
+</body>
+</html>

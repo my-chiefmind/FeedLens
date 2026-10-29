@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Install Feed Lens</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--ink:#1d2226;--mut:#5e6b78;--blue:#0347c2;--green:#16a34a;--amber:#b45309}
+@media (prefers-color-scheme:dark){:root{--bg:#11151a;--card:#1b2128;--ink:#e8ecef;--mut:#9aa6b2;--blue:#71b7fb;--green:#4ade80;--amber:#fbbf24}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 system-ui,-apple-system,sans-serif;padding:16px}
+main{max-width:720px;margin:auto}
+h1{color:var(--blue);font-size:26px;margin-bottom:4px}
+.lead{color:var(--mut);margin-top:0}
+.step{background:var(--card);border-radius:14px;padding:14px 16px 14px 64px;margin:12px 0;position:relative;box-shadow:0 1px 4px #0001}
+.step b.n{position:absolute;left:16px;top:14px;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:17px}
+h2{font-size:18px;margin:0 0 4px}
+code{background:#8882;padding:1px 6px;border-radius:5px;font-size:15px;word-break:break-all}
+.note{border-left:5px solid var(--amber);background:var(--card);border-radius:10px;padding:10px 14px;margin:14px 0}
+.ok{border-left-color:var(--green)}
+ul{margin:4px 0;padding-left:20px}
+figure{margin:10px 0 0;text-align:center}figure img{max-width:100%;border-radius:10px;box-shadow:0 1px 6px #0002}figcaption{color:var(--mut);font-size:14px}
+.logo{display:flex;align-items:center;gap:12px}.logo img{width:48px;height:48px}
+</style>
+</head>
+<body><main>
+<div class="logo"><img src="../src/icons/icon-128.png" alt=""><h1>Feed Lens for LinkedIn and X</h1></div>
+<p class="lead">Test version from My Chief Mind. Takes about 3 minutes to install. Works in Google Chrome on a computer.</p>
+
+<div class="note ok"><b>What it does:</b> on your LinkedIn and X home feeds, it folds away ads and posts you don't care about. Each folded post gets a small bar with a <b>Show</b> button, so nothing is lost.</div>
+
+<div class="step"><b class="n">1</b><h2>Unzip the file</h2>
+Double-click <code>feed-lens.zip</code>. You get a folder named <code>feed-lens</code>.<br>
+Move that folder somewhere it can stay, like <b>Documents</b>. <i>Don't delete it later: Chrome uses it.</i></div>
+
+<div class="step"><b class="n">2</b><h2>Open the Chrome extensions page</h2>
+In Chrome, type this in the address bar and press Enter:<br><code>chrome://extensions</code></div>
+
+<div class="step"><b class="n">3</b><h2>Turn on "Developer mode"</h2>
+Top right corner of that page. Flip the switch on.</div>
+
+<div class="step"><b class="n">4</b><h2>Click "Load unpacked"</h2>
+A button at the top left. Pick the <code>feed-lens</code> folder from step 1 (the folder itself, not a file inside it). Click <b>Select</b>.</div>
+
+<div class="step"><b class="n">5</b><h2>Pin it</h2>
+Click the puzzle piece 🧩 at the top right of Chrome, then the pin 📌 next to <b>Feed Lens</b>. The blue icon with a green check now sits in your toolbar.
+<figure><img src="screenshot-popup.png" alt="Feed Lens popup" width="260"><figcaption>Click the icon for quick switches and today's counts.</figcaption></figure></div>
+
+<div class="step"><b class="n">6</b><h2>Choose your settings</h2>
+Click the blue icon, then <b>Settings</b>.
+<ul>
+<li><b>No AI key?</b> Set <b>Mode</b> to <b>Keywords only</b>. Free, works right away.</li>
+<li><b>Have a TypeSafe AI key?</b> Keep Mode on <b>AI</b> and paste your own key. Get one at <code>typesafe.ai</code>.</li>
+<li>The <b>LinkedIn</b> and <b>X</b> tabs each have their own <b>I like</b> and <b>Hide</b> lists. Edit them and click <b>Save</b>.</li>
+<li>On the <b>X</b> tab you can also hide Premium offers, trends and news, "Who to follow" and "Live on X".</li>
+</ul>
+<figure><img src="screenshot-ai-settings.png" alt="AI settings"><figcaption>AI &amp; display: mode, key and strictness.</figcaption></figure>
+<figure><img src="screenshot-x-settings.png" alt="X settings"><figcaption>X tab: page clean-up switches.</figcaption></figure></div>
+
+<div class="step"><b class="n">7</b><h2>Open LinkedIn or X</h2>
+Go to <code>linkedin.com/feed</code> or <code>x.com/home</code>. After a second, every post shows a small bar:
+<ul>
+<li>✅ <b>Checked</b>: shown to you, with the reason</li>
+<li>🙈 <b>Collapsed</b>: folded away. Click <b>Show</b> to read it anyway</li>
+</ul></div>
+
+<div class="note"><b>Good to know</b>
+<ul>
+<li>The blue icon has two quick switches: <b>Filter is on</b> and <b>Hide ads</b>.</li>
+<li>It only touches the LinkedIn home feed and the X home and Explore pages, nothing else.</li>
+<li>In AI mode, the text of each post is sent to TypeSafe AI to decide. Nothing is posted, liked or sent on LinkedIn or X.</li>
+<li>Chrome may show a "developer mode extensions" warning. That's normal for test versions.</li>
+<li><b>New version?</b> Replace the folder, then click ↻ on the extension card in <code>chrome://extensions</code>.</li>
+<li><b>Remove it:</b> click <b>Remove</b> on that same card.</li>
+</ul></div>
+
+<div class="note ok"><b>Please tell us:</b> posts that were folded but shouldn't be, ads that got through, anything confusing. A screenshot helps a lot.</div>
+</main></body></html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed Lens settings</title>
+<style>
+  :root { color-scheme: light dark; --bg:#f9f9f8; --card:#fff; --ink:#1a1a1a; --muted:#6b6b6b; --line:#e7e7e4; --soft:#f1f1ef; --accent:#1a1a1a; --on:#10a37f; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d0d0d; --card:#171717; --ink:#ececec; --muted:#9b9b9b; --line:#2a2a2a; --soft:#212121; --accent:#ececec; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:40px 16px 110px; }
+  header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+  header img { width:36px; height:36px; border-radius:10px; }
+  h1 { font-size:22px; font-weight:650; margin:0; letter-spacing:-.01em; } header p { margin:0; color:var(--muted); font-size:13px; }
+  .tabs { display:flex; gap:4px; background:var(--soft); padding:4px; border-radius:999px; margin-bottom:20px; }
+  .tabs button { flex:1; border:0; background:transparent; color:var(--muted); padding:8px 12px; border-radius:999px; font:inherit; font-weight:600; cursor:pointer; }
+  .tabs button[aria-selected="true"] { background:var(--card); color:var(--ink); box-shadow:0 1px 3px #0002; }
+  .panel { display:none; } .panel.active { display:block; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px 20px; margin-bottom:14px; }
+  h3 { font-size:14px; margin:0 0 8px; }
+  label { display:block; font-size:13px; font-weight:600; color:var(--muted); margin:12px 0 6px; }
+  .hint { color:var(--muted); font-size:12.5px; margin:8px 0 0; }
+  input[type=text], input[type=password], input[type=number], textarea, select { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--soft); color:var(--ink); font:inherit; outline:none; transition:border-color .15s, box-shadow .15s; }
+  input:focus, textarea:focus, select:focus { border-color:var(--muted); box-shadow:0 0 0 3px #8882; }
+  textarea { min-height:96px; resize:vertical; }
+  .grid3 { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; } .grid3 label { margin:6px 0 0; }
+  .grid3 input { margin-top:6px; }
+  @media (max-width:480px) { .grid3 { grid-template-columns:1fr; } }
+  .switch-row { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:6px 0; }
+  .switch-row + .switch-row { border-top:1px solid var(--line); padding-top:12px; margin-top:6px; }
+  .switch-row small { display:block; color:var(--muted); font-size:12.5px; }
+  .switch { appearance:none; width:42px; height:24px; border-radius:999px; background:var(--line); position:relative; cursor:pointer; flex:none; transition:background .2s; }
+  .switch::after { content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 2px #0004; transition:transform .2s; }
+  .switch:checked { background:var(--on); } .switch:checked::after { transform:translateX(18px); }
+  .bar { position:fixed; left:0; right:0; bottom:0; padding:14px 16px; background:linear-gradient(transparent, var(--bg) 35%); }
+  .bar div { max-width:680px; margin:0 auto; display:flex; align-items:center; gap:12px; }
+  #save { background:var(--accent); color:var(--bg); border:0; border-radius:999px; padding:10px 26px; font:inherit; font-weight:650; cursor:pointer; }
+  #save:hover { opacity:.88; }
+  #status { color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="icons/icon-48.png" alt=""><div><h1>Feed Lens</h1><p>A calmer LinkedIn and X feed · by <a href="https://MyChiefMind.com" target="_blank" rel="noopener noreferrer">My Chief Mind</a></p></div></header>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-for="li" aria-selected="true">LinkedIn</button>
+    <button role="tab" data-for="x" aria-selected="false">X</button>
+    <button role="tab" data-for="ai" aria-selected="false">AI &amp; display</button>
+  </nav>
+  <section class="panel" data-tab="li">
+    <div class="card">
+      <div class="switch-row"><div><b>Filter is on</b><small>Judge each post on your LinkedIn home feed</small></div><input type="checkbox" class="switch" id="enabled"></div>
+      <div class="switch-row"><div><b>Hide ads</b><small>"Promoted" posts and posts that read like a sales pitch</small></div><input type="checkbox" class="switch" id="hideAds"></div>
+    </div>
+    <div class="card">
+      <h3>Topics</h3>
+      <label for="likes">I like</label>
+      <textarea id="likes" placeholder="Example (type your own):&#10;AI in operations&#10;engineering leadership"></textarea>
+      <label for="dislikes">Hide</label>
+      <textarea id="dislikes" placeholder="Example (type your own):&#10;politics&#10;crypto"></textarea>
+      <p class="hint">One per line or comma separated. Empty uses the starter list.</p>
+    </div>
+    <div class="card">
+      <h3>Popularity</h3>
+      <p class="hint">Hide posts with fewer than this. 0 means no limit. Posts whose numbers can't be read are always shown.</p>
+      <div class="grid3">
+        <label>Min reactions<input type="number" min="0" step="1" id="minLikes"></label>
+        <label>Min comments<input type="number" min="0" step="1" id="minComments"></label>
+        <label>Min reposts<input type="number" min="0" step="1" id="minShares"></label>
+      </div>
+    </div>
+  </section>
+  <section class="panel" data-tab="x">
+    <div class="card">
+      <div class="switch-row"><div><b>Filter is on</b><small>Judge each post on your X home feed</small></div><input type="checkbox" class="switch" id="x_enabled"></div>
+      <div class="switch-row"><div><b>Hide ads</b><small>"Ad" posts and posts that read like a sales pitch</small></div><input type="checkbox" class="switch" id="x_hideAds"></div>
+    </div>
+    <div class="card">
+      <h3>Clean up the page</h3>
+      <div class="switch-row"><div><b>Hide Premium offers</b><small>"Subscribe to Premium" boxes</small></div><input type="checkbox" class="switch" id="x_hidePremium"></div>
+      <div class="switch-row"><div><b>Hide trends and news</b><small>"What's happening", "Today's News", sports scores</small></div><input type="checkbox" class="switch" id="x_hideTrends"></div>
+      <div class="switch-row"><div><b>Hide "Who to follow"</b><small>Account suggestions, in the sidebar and inside the feed</small></div><input type="checkbox" class="switch" id="x_hideFollow"></div>
+      <div class="switch-row"><div><b>Hide "Live on X"</b><small>Live audio and video rooms</small></div><input type="checkbox" class="switch" id="x_hideLive"></div>
+    </div>
+    <div class="card">
+      <h3>Topics</h3>
+      <label for="x_likes">I like</label>
+      <textarea id="x_likes" placeholder="Example (type your own):&#10;AI research&#10;startups"></textarea>
+      <label for="x_dislikes">Hide</label>
+      <textarea id="x_dislikes" placeholder="Example (type your own):&#10;politics&#10;crypto"></textarea>
+      <p class="hint">One per line or comma separated. Empty uses the starter list.</p>
+    </div>
+    <div class="card">
+      <h3>Popularity</h3>
+      <p class="hint">Hide posts with fewer than this. 0 means no limit. Posts whose numbers can't be read are always shown.</p>
+      <div class="grid3">
+        <label>Min likes<input type="number" min="0" step="1" id="x_minLikes"></label>
+        <label>Min replies<input type="number" min="0" step="1" id="x_minComments"></label>
+        <label>Min reposts<input type="number" min="0" step="1" id="x_minShares"></label>
+      </div>
+    </div>
+  </section>
+  <section class="panel" data-tab="ai">
+    <div class="card">
+      <h3>How it decides (both sites)</h3>
+      <label for="mode">Mode</label>
+      <select id="mode">
+        <option value="ai">AI (TypeSafe Jev): understands meaning</option>
+        <option value="keywords">Keywords only: free, no AI</option>
+      </select>
+      <label for="apiKey">TypeSafe API key</label>
+      <input type="password" id="apiKey" autocomplete="off" placeholder="apikey_…">
+      <p class="hint">Stored only in this browser. In AI mode, each post's text is sent to api.typesafe.ai.</p>
+      <label for="model">Model</label>
+      <input type="text" id="model">
+      <label for="threshold">Strictness (0 to 1)</label>
+      <input type="number" id="threshold" min="0" max="1" step="0.05">
+      <p class="hint">A post is shown when the AI's match score is at least this. Higher hides more.</p>
+    </div>
+    <div class="card">
+      <label for="hideStyle" style="margin-top:0">Hidden posts</label>
+      <select id="hideStyle">
+        <option value="collapse">Fold into a small bar (with a Show button)</option>
+        <option value="remove">Remove completely</option>
+      </select>
+    </div>
+  </section>
+</main>
+<div class="bar"><div><button id="save">Save</button><span id="status" role="status"></span></div></div>
+<script src="options.js"></script>
+</body>
+</html>
