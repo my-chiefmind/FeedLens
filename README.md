@@ -26,9 +26,10 @@ On X it can also clean up the page (each is a switch, off by default):
 Step-by-step guide with screenshots: [docs/HOW-TO-INSTALL.md](docs/HOW-TO-INSTALL.md).
 
 ```bash
-npm ci
-npm run build
+npm install
 ```
+
+This also builds the extension into the `dist/` folder (`npm run build` rebuilds it).
 
 1. Open `chrome://extensions` and turn on **Developer mode**.
 2. Click **Load unpacked** and pick the `dist/` folder.
